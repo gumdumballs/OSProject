@@ -6,7 +6,7 @@ Section: 7.
 
 Team Mates:
 1. __Fill name__ and __matric no__
-2. __Fill name__ and __matric no__
+2. Nur Afifah Amni and 2318824
 3. Nadia Erdeena and 2319226
 
 ## Rules
