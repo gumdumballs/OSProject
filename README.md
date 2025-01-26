@@ -75,7 +75,7 @@ codespace
 ***Questions:***
 
 Look at the TERMINAL tab. Run the following commands and provide the output here. 
-
+Sheereen
 1. Run the command **pwd** . ***(1 mark)*** __Fill answer here__.
 2. Run the command **cat /etc/passwd** . ***(1 mark)*** __Fill answer here__.
 3. Run the command **df** . ***(1 mark)*** __Fill answer here__.
@@ -151,7 +151,7 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 ```
 
 ***Questions:***
-
+Afifah
 1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
 2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
 
@@ -171,7 +171,7 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 ```
 
 ***Questions:***
-
+Afifah
 1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
@@ -204,7 +204,7 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
  <img src="./images/helloworldweb.png" width="70%">
 
 ***Questions:***
-
+Nadia
 1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
 2. What port is the apache web server running. ***(1 mark)*** __Fill answer here__.
 3. What port is open for http protocol on the host machine? ***(1 mark)*** __Fill answer here__.
@@ -225,7 +225,7 @@ docker run -itd --net bluenet --name c1 busybox sh
 docker run -itd --net rednet --name c2 busybox sh
 ```
 ***Questions:***
-
+Nadia
 1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** __Fill answer here__.
 2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** __Fill answer here__.
 3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __Fill answer here__.
@@ -241,7 +241,7 @@ docker network connect bridgenet c2
 docker exec c1 ping c2
 ```
 ***Questions:***
-
+Sheereen
 1. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
 2. What is different from the previous ping in the section above? ***(1 mark)*** __Fill answer here__.
 
@@ -385,7 +385,7 @@ INSERT INTO mytable (name, value) VALUES ('example1', 'value1'), ('example2', 'v
 You have now set up a Node.js application in a Docker container on nodejsnet netowrk and a MySQL database in another Docker container on mysqlnet network. Now bridge the two network together.
 
 ***Questions:***
-
+Afifah
 1. What is the output of step 5 above, explain the error? ***(1 mark)*** __Fill answer here__.
 2. Show the instruction needed to make this work. ***(1 mark)*** __Fill answer here__.
 
