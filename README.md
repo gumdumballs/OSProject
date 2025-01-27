@@ -75,7 +75,7 @@ codespace
 ***Questions:***
 
 Look at the TERMINAL tab. Run the following commands and provide the output here. 
-Sheereen
+
 1. Run the command **pwd** . ***(1 mark)*** 
 ```bash
 @sheereeniman ➜ /workspaces/OSProject (main) $ pwd
