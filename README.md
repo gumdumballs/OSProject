@@ -474,7 +474,7 @@ docker exec c1 ping c2
 
 1. Are you able to ping? Show your output . ***(1 mark)*** 
 ```bash
-yes, the ping is successfull
+yes, the ping was successfull
 
 @sheereeniman ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
 PING c2 (172.20.0.3): 56 data bytes
