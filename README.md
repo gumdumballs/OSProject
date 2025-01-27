@@ -472,8 +472,93 @@ docker exec c1 ping c2
 ```
 ***Questions:***
 Sheereen
-1. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
-2. What is different from the previous ping in the section above? ***(1 mark)*** __Fill answer here__.
+1. Are you able to ping? Show your output . ***(1 mark)*** 
+```bash
+yes, the ping is successfull
+
+@sheereeniman ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
+PING c2 (172.20.0.3): 56 data bytes
+64 bytes from 172.20.0.3: seq=0 ttl=64 time=0.148 ms
+64 bytes from 172.20.0.3: seq=1 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=2 ttl=64 time=0.061 ms
+64 bytes from 172.20.0.3: seq=3 ttl=64 time=0.072 ms
+64 bytes from 172.20.0.3: seq=4 ttl=64 time=0.067 ms
+64 bytes from 172.20.0.3: seq=5 ttl=64 time=0.067 ms
+64 bytes from 172.20.0.3: seq=6 ttl=64 time=0.082 ms
+64 bytes from 172.20.0.3: seq=7 ttl=64 time=0.061 ms
+64 bytes from 172.20.0.3: seq=8 ttl=64 time=0.081 ms
+64 bytes from 172.20.0.3: seq=9 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=10 ttl=64 time=0.066 ms
+64 bytes from 172.20.0.3: seq=11 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=12 ttl=64 time=0.062 ms
+64 bytes from 172.20.0.3: seq=13 ttl=64 time=0.237 ms
+64 bytes from 172.20.0.3: seq=14 ttl=64 time=0.070 ms
+64 bytes from 172.20.0.3: seq=15 ttl=64 time=0.061 ms
+64 bytes from 172.20.0.3: seq=16 ttl=64 time=0.064 ms
+64 bytes from 172.20.0.3: seq=17 ttl=64 time=0.079 ms
+64 bytes from 172.20.0.3: seq=18 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=19 ttl=64 time=0.068 ms
+64 bytes from 172.20.0.3: seq=20 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=21 ttl=64 time=0.070 ms
+64 bytes from 172.20.0.3: seq=22 ttl=64 time=0.089 ms
+64 bytes from 172.20.0.3: seq=23 ttl=64 time=0.070 ms
+64 bytes from 172.20.0.3: seq=24 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=25 ttl=64 time=0.066 ms
+64 bytes from 172.20.0.3: seq=26 ttl=64 time=0.062 ms
+64 bytes from 172.20.0.3: seq=27 ttl=64 time=0.072 ms
+64 bytes from 172.20.0.3: seq=28 ttl=64 time=0.096 ms
+64 bytes from 172.20.0.3: seq=29 ttl=64 time=0.065 ms
+64 bytes from 172.20.0.3: seq=30 ttl=64 time=0.086 ms
+64 bytes from 172.20.0.3: seq=31 ttl=64 time=0.075 ms
+64 bytes from 172.20.0.3: seq=32 ttl=64 time=0.069 ms
+64 bytes from 172.20.0.3: seq=33 ttl=64 time=0.064 ms
+64 bytes from 172.20.0.3: seq=34 ttl=64 time=0.060 ms
+64 bytes from 172.20.0.3: seq=35 ttl=64 time=0.075 ms
+64 bytes from 172.20.0.3: seq=36 ttl=64 time=0.105 ms
+64 bytes from 172.20.0.3: seq=37 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=38 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=39 ttl=64 time=0.075 ms
+64 bytes from 172.20.0.3: seq=40 ttl=64 time=0.113 ms
+64 bytes from 172.20.0.3: seq=41 ttl=64 time=0.083 ms
+64 bytes from 172.20.0.3: seq=42 ttl=64 time=0.087 ms
+64 bytes from 172.20.0.3: seq=43 ttl=64 time=0.082 ms
+64 bytes from 172.20.0.3: seq=44 ttl=64 time=0.088 ms
+64 bytes from 172.20.0.3: seq=45 ttl=64 time=0.075 ms
+64 bytes from 172.20.0.3: seq=46 ttl=64 time=0.083 ms
+64 bytes from 172.20.0.3: seq=47 ttl=64 time=0.076 ms
+64 bytes from 172.20.0.3: seq=48 ttl=64 time=0.080 ms
+64 bytes from 172.20.0.3: seq=49 ttl=64 time=0.078 ms
+64 bytes from 172.20.0.3: seq=50 ttl=64 time=0.103 ms
+64 bytes from 172.20.0.3: seq=51 ttl=64 time=0.084 ms
+64 bytes from 172.20.0.3: seq=52 ttl=64 time=0.118 ms
+64 bytes from 172.20.0.3: seq=53 ttl=64 time=0.083 ms
+64 bytes from 172.20.0.3: seq=54 ttl=64 time=0.078 ms
+64 bytes from 172.20.0.3: seq=55 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=56 ttl=64 time=0.083 ms
+64 bytes from 172.20.0.3: seq=57 ttl=64 time=0.088 ms
+64 bytes from 172.20.0.3: seq=58 ttl=64 time=0.077 ms
+64 bytes from 172.20.0.3: seq=59 ttl=64 time=0.071 ms
+64 bytes from 172.20.0.3: seq=60 ttl=64 time=0.078 ms
+64 bytes from 172.20.0.3: seq=61 ttl=64 time=0.079 ms
+64 bytes from 172.20.0.3: seq=62 ttl=64 time=0.073 ms
+64 bytes from 172.20.0.3: seq=63 ttl=64 time=0.072 ms
+64 bytes from 172.20.0.3: seq=64 ttl=64 time=0.085 ms
+64 bytes from 172.20.0.3: seq=65 ttl=64 time=0.078 ms
+64 bytes from 172.20.0.3: seq=66 ttl=64 time=0.074 ms
+64 bytes from 172.20.0.3: seq=67 ttl=64 time=0.080 ms
+64 bytes from 172.20.0.3: seq=68 ttl=64 time=0.088 ms
+64 bytes from 172.20.0.3: seq=69 ttl=64 time=0.084 ms
+64 bytes from 172.20.0.3: seq=70 ttl=64 time=0.100 ms
+```
+2. What is different from the previous ping in the section above? ***(1 mark)*** 
+```bash
+previous :
+ping: bad address 'c2'
+
+in the previous ping, it failed because the container c1 couldn't find container c2 to send a message. This occurred because the containers were placed on different networks and there was no network bridging, which isolated them from each other.
+
+in this new ping, the ping was successful. both containers were on the same network because of the network bridging. container c1 was able to send a message to container c2, and c2 replied back.
+```
 
 ## Intermediate Level (10 marks bonus)
 
