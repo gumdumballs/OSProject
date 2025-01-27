@@ -471,7 +471,7 @@ docker network connect bridgenet c2
 docker exec c1 ping c2
 ```
 ***Questions:***
-Sheereen
+
 1. Are you able to ping? Show your output . ***(1 mark)*** 
 ```bash
 yes, the ping is successfull
@@ -553,6 +553,7 @@ PING c2 (172.20.0.3): 56 data bytes
 2. What is different from the previous ping in the section above? ***(1 mark)*** 
 ```bash
 previous :
+@sheereeniman ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
 ping: bad address 'c2'
 
 in the previous ping, it failed because the container c1 couldn't find container c2 to send a message. This occurred because the containers were placed on different networks and there was no network bridging, which isolated them from each other.
