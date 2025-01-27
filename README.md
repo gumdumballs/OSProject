@@ -5,7 +5,7 @@ Group Name: lilnas.
 Section: 7. 
 
 Team Mates:
-1. Noor Sheereen Iman and 2315342
+1. Noor Sheereen Iman binti Zainal Abidin and 2315342
 2. Nur Afifah Amni and 2318824
 3. Nadia Erdeena and 2319226
 
