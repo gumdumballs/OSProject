@@ -24,9 +24,14 @@ Team Mates:
 
 ***Questions:***
 
-1. What is the link of the fork OSProject in your repository. https://github.com/gumdumballs/OSProject/tree/main 
-2. How many files and folders are in this repository. 1 folder with 6 pictures and 1 file.
-
+1. What is the link of the fork OSProject in your repository.
+```bash
+https://github.com/gumdumballs/OSProject/tree/main
+```
+2. How many files and folders are in this repository.
+```bash
+1 folder with 6 pictures and 1 file.**
+```
 
 ## Exploring github codespaces
 
@@ -57,9 +62,18 @@ Team Mates:
 
 ***Questions:***
 
-1. What is default OS used to run the virtual environment for codespaces. Ubuntu Linux.
-2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces. 2-core, 8GB RAM, 32GB and 4-core, 16GB RAM, 32GB .
-3. Why must we commit and sync our current work on source control? This is to avoid work loss since it is not saved into our main repository.
+1. What is default OS used to run the virtual environment for codespaces.
+```bash
+Ubuntu Linux.
+```
+2. What are the two options of ram, disk and vcpu configuration you can have in running codespaces.
+```bash
+2-core, 8GB RAM, 32GB and 4-core, 16GB RAM, 32GB.
+```
+3. Why must we commit and sync our current work on source control?
+```bash
+This is to avoid work loss since it is not saved into our main repository.
+```
 
 ## Exploring the Terminal
 
@@ -434,10 +448,23 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
  <img src="./images/helloworldweb.png" width="70%">
 
 ***Questions:***
-Nadia
-1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)*** __Fill answer here__.
-3. What port is open for http protocol on the host machine? ***(1 mark)*** __Fill answer here__.
+
+1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)***
+```bash
+@gumdumballs ➜ /workspaces/OSProject (main) $ docker exec -it $(docker ps -q) ls -ld /usr/local/apache2/htdocs/
+drwxrwxrwx+ 6 1000 root 4096 Jan 29 19:21 /usr/local/apache2/htdocs/
+
+Permission: drwxrwxrwx+
+User & Group: 1000 root
+```
+2. What port is the apache web server running. ***(1 mark)***
+```bash
+Port 80
+```
+3. What port is open for http protocol on the host machine? ***(1 mark)***
+```bash
+8080
+```
 
 ## Create SUB Networks
 
@@ -455,12 +482,42 @@ docker run -itd --net bluenet --name c1 busybox sh
 docker run -itd --net rednet --name c2 busybox sh
 ```
 ***Questions:***
-Nadia
-1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)*** __Fill answer here__.
-2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** __Fill answer here__.
-3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __Fill answer here__.
-4. What is the network address for the running container c1 and c2? ***(1 mark)*** __Fill answer here__.
-5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** __Fill answer here__.
+
+1. Describe what is busybox and what is command switch **--name** is for? . ***(2 mark)***
+```bash
+BusyBox is an open-source software package that merges numerous Unix tools into one executable file. It's tailored for embedded operating systems with constrained resources, such as IoT devices and cloud computing environments.
+
+--name: is to custom the name of the container instead of using the one that is randomly generated.
+```
+
+2. Explore the network using the command ```docker network ls```, show the output of your terminal. ***(1 mark)*** 
+```bash
+@gumdumballs ➜ /workspaces/OSProject (main) $ docker network ls
+NETWORK ID     NAME                                                                     DRIVER    SCOPE
+c8abdf8dac05   bluenet                                                                  bridge    local
+62b4df09c174   bridge                                                                   bridge    local
+63b393f3e289   host                                                                     host      local
+b4fb20a18646   none                                                                     null      local
+964f1b0b66b2   rednet                                                                   bridge    local
+fd426b26cf4c   rednet964f1b0b66b2e7f1274368ad88de8fe13da5bd43fd3cfc8f190a0a6b8c1d910e   bridge    local
+```
+3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)***
+```bash
+Gateway of Bluenet [docker inspect c1]: 172.18.0.1
+Gateway of Rednet [docker inspect c2]: 172.19.0.1
+```
+4. What is the network address for the running container c1 and c2? ***(1 mark)***
+```bash
+IP Address of Bluenet: 172.18.0.2
+IP Address of Rednet: 172.19.0.2
+```
+5. Using the command ```docker exec c1 ping c2```, which basically tries to do a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)*** 
+```bash
+@gumdumballs ➜ /workspaces/OSProject (main) $ docker exec c1 ping c2
+ping: bad address 'c2'
+
+Since c1 and c2 are not on the same network, the ping will fail.
+```
 
 ## Bridging two SUB Networks
 1. Let's try this again by creating a network to bridge the two containers in the two subnetworks
