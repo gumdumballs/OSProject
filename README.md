@@ -30,7 +30,7 @@ https://github.com/gumdumballs/OSProject/tree/main
 ```
 2. How many files and folders are in this repository.
 ```bash
-1 folder with 6 pictures and 1 file.**
+1 folder with 6 pictures and 1 file.
 ```
 
 ## Exploring github codespaces
