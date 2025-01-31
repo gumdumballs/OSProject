@@ -6,7 +6,7 @@ Section: 7.
 
 Team Mates:
 1. Noor Sheereen Iman binti Zainal Abidin and 2315342
-2. Nur Afifah Amni and 2318824
+2. Nur Afifah Amni binti Ariffin and 2318824
 3. Nadia Erdeena and 2319226
 
 ## Rules
@@ -395,9 +395,15 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 ```
 
 ***Questions:***
-Afifah
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
+
+1. Are files in the container persistent. Why not?. ***(1 mark)***
+```
+No, it's not persistent. When a container is deleted, its filesystem is removed along with it.
+```
+2. Can we run two, or three instances of debian linux? . ***(1 mark)***
+```
+Yes, we can run multiple instances because each container runs independently with its own isolated filesystem, processes, and network stack
+```
 
 ## Running your own container with persistent storage
 
@@ -415,15 +421,31 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 ```
 
 ***Questions:***
-Afifah
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
+
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)***
+```
+@nffhmn ➜ /workspaces/OSProject/myroot (main) $ ls -l /workspaces/OSProject/myroot
+total 4
+-rw-rw-rw- 1 root root  19 Jan 30 12:18 persistent-file.txt
+
+permissions : -rw-rw-rw-
+user : root
+group : root
+
+```   
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
 //use sudo and chown
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __Fill answer here__.***
+```
+*** Yes, you can. ***
+@nffhmn ➜ /workspaces/OSProject (main) $ sudo chown -R codespace:codespace /workspaces/OSProject/myroot
+@nffhmn ➜ /workspaces/OSProject/myroot (main) $ ls -l /workspaces/OSProject/myroot
+total 4
+-rw-rw-rw- 1 codespace codespace 19 Jan 31 04:02 persistent-file.txt
+```
 
 ## You are on your own, create your own static webpage
 
@@ -758,9 +780,23 @@ INSERT INTO mytable (name, value) VALUES ('example1', 'value1'), ('example2', 'v
 You have now set up a Node.js application in a Docker container on nodejsnet netowrk and a MySQL database in another Docker container on mysqlnet network. Now bridge the two network together.
 
 ***Questions:***
-Afifah
-1. What is the output of step 5 above, explain the error? ***(1 mark)*** __Fill answer here__.
-2. Show the instruction needed to make this work. ***(1 mark)*** __Fill answer here__.
+
+1. What is the output of step 5 above, explain the error? ***(1 mark)***
+```
+Output :
+@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ curl http://localhost:3000/random
+Server Error
+
+The error occurs because Node.js and MySQL are running on separate networks (nodejsnet and mysqlnet).
+The Node.js container cannot resolve the hostname mysql-container because it is in a different network.
+
+```
+2. Show the instruction needed to make this work. ***(1 mark)***
+```
+@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect mysqlnet nodejs-container
+@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect nodejsnet mysql-container
+
+```
 
 
 
