@@ -398,7 +398,7 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 1. Are files in the container persistent. Why not?. ***(1 mark)***
 ```
-No, it's not persistent. When a container is deleted, its filesystem is removed along with it.
+No, it's not persistent. When a container is deleted, Docker destroys the container’s filesystem and creates a new clean instance if you restart it.
 ```
 2. Can we run two, or three instances of debian linux? . ***(1 mark)***
 ```
@@ -426,7 +426,7 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 ```
 @nffhmn ➜ /workspaces/OSProject/myroot (main) $ ls -l /workspaces/OSProject/myroot
 total 4
--rw-rw-rw- 1 root root  19 Jan 30 12:18 persistent-file.txt
+-rw-rw-rw- 1 root      root      33 Jan 31 03:52 byeeworld.txt
 
 permissions : -rw-rw-rw-
 user : root
@@ -440,11 +440,12 @@ sudo chown -R codespace:codespace myroot
 
 ```
 ```
-*** Yes, you can. ***
-@nffhmn ➜ /workspaces/OSProject (main) $ sudo chown -R codespace:codespace /workspaces/OSProject/myroot
+Yes, you can.
+
+@nffhmn ➜ /workspaces/OSProject/myroot (main) $ sudo chown -R codespace:codespace /workspaces/OSProject/myroot
 @nffhmn ➜ /workspaces/OSProject/myroot (main) $ ls -l /workspaces/OSProject/myroot
 total 4
--rw-rw-rw- 1 codespace codespace 19 Jan 31 04:02 persistent-file.txt
+-rw-rw-rw- 1 codespace codespace 33 Jan 31 04:37 byeeworld.txt
 ```
 
 ## You are on your own, create your own static webpage
@@ -784,8 +785,8 @@ You have now set up a Node.js application in a Docker container on nodejsnet net
 1. What is the output of step 5 above, explain the error? ***(1 mark)***
 ```
 Output :
-@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ curl http://localhost:3000/random
-Server Error
+@nffhmn ➜ /workspaces/OSProject (main) $ curl http://localhost:3000/random
+curl: (7) Failed to connect to localhost port 3000: Connection refused
 
 The error occurs because Node.js and MySQL are running on separate networks (nodejsnet and mysqlnet).
 The Node.js container cannot resolve the hostname mysql-container because it is in a different network.
@@ -793,8 +794,53 @@ The Node.js container cannot resolve the hostname mysql-container because it is 
 ```
 2. Show the instruction needed to make this work. ***(1 mark)***
 ```
-@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect mysqlnet nodejs-container
-@nffhmn ➜ /workspaces/OSProject/nodejs-app (main) $ docker network connect nodejsnet mysql-container
+@nffhmn ➜ /workspaces/OSProject (main) $ docker start mysql-container nodejs-container
+mysql-container
+nodejs-container
+@nffhmn ➜ /workspaces/OSProject (main) $ docker network create mybridge
+b2e449103ba062783b20931ede1ffde2cf4c08b9081aea416f38cf43899aa395
+@nffhmn ➜ /workspaces/OSProject (main) $ docker network ls 
+NETWORK ID     NAME        DRIVER    SCOPE
+557f798c4602   bridge      bridge    local
+05f292d1745a   host        host      local
+b2e449103ba0   mybridge    bridge    local
+16363c015231   mysqlnet    bridge    local
+13423b8cda27   nodejsnet   bridge    local
+716313e8b00f   none        null      local
+
+@nffhmn ➜ /workspaces/OSProject (main) $ docker network connect mybridge mysql-container
+@nffhmn ➜ /workspaces/OSProject (main) $ docker network connect mybridge nodejs-container
+
+@nffhmn ➜ /workspaces/OSProject (main) $ docker run --name mysql-container --network mybridge -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=myuser -e MYSQL_PASSWORD=mypassword -d mysql:latest
+f36c6e50ccaca7fa319da112d10efb8772bdbca54b40b7e25eacd731dfec87cc
+@nffhmn ➜ /workspaces/OSProject (main) $ docker run --name nodejs-container --network mybridge -p 3000:3000 -d nodejs-app
+35626def763127b3dc0476fdbad4f867791ad503b4b2e5cb1ed4b8d62d293f75
+@nffhmn ➜ /workspaces/OSProject (main) $ docker exec -it mysql-container mysql -umyuser -pmypassword mydatabase
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Server version: 9.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE TABLE mytable (
+    ->   id INT AUTO_INCREMENT PRIMARY KEY,
+    ->   name VARCHAR(255) NOT NULL,
+    ->   value VARCHAR(255) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO mytable (name, value) VALUES ('example1', 'value1'), ('example2', 'value2'), ('example3', 'value3');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> ^DBye
+
 
 ```
 
